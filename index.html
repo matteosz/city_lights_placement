@@ -60,6 +60,11 @@
                         
                         <p>CO2 Consumed Per Hour (kg): <span class="bolded" id="co2-counter">0.00</span></p>
                         <p>Total Intensity (MLx): <span class="bolded" id="light-integral">0.00</span></p>
+                        <br>
+                        <h5 class="text-center">How many &#127794; should you plant by year to compensate this carbon footprint?</h5>
+                        <br>
+                        <h5 class="text-center"><span class="bolded" id="tree-counter">0</span></h5>
+                        <br>
                         <button id="add-light" class="btn btn-primary">Add Light</button>
                     </div>
                 </div>
@@ -109,6 +114,7 @@
         const lights = [];
         const addLightButton = document.querySelector('#add-light');
         const co2CounterSpan = document.querySelector('#co2-counter');
+        const treeCounterSpan = document.querySelector('#tree-counter');
         const lightIntegralSpan = document.querySelector('#light-integral');
 
         addLightButton.addEventListener('click', () => {
@@ -122,6 +128,9 @@
 
             // Update the CO2 counter
             co2CounterSpan.textContent = calculateCO2(lights).toFixed(2);
+
+            // Update the tree counter
+            treeCounterSpan.textContent = (Math.round(parseInt(co2CounterSpan.textContent) / 24));
 
             // Update the light integral
             lightIntegralSpan.textContent = calculateLightIntegral(lights).toFixed(2);
@@ -170,6 +179,7 @@
                 updateGrid();
                 lightIntegralSpan.textContent = calculateLightIntegral(lights).toFixed(2);
                 co2CounterSpan.textContent = calculateCO2(lights).toFixed(2);
+                treeCounterSpan.textContent = (Math.round(parseInt(co2CounterSpan.textContent) / 24));
             });
 
             // Add event listener to the delete button
@@ -181,6 +191,9 @@
 
                 // Update the CO2 counter
                 co2CounterSpan.textContent = calculateCO2(lights).toFixed(2);
+
+                // Update the tree counter
+                treeCounterSpan.textContent = (Math.round(parseInt(co2CounterSpan.textContent) / 24));
 
                 // Update the light integral
                 lightIntegralSpan.textContent = calculateLightIntegral(lights).toFixed(2);
@@ -238,6 +251,7 @@
                         updateGrid();
                         lightIntegralSpan.textContent = calculateLightIntegral(lights).toFixed(2);
                         co2CounterSpan.textContent = calculateCO2(lights).toFixed(2);
+                        treeCounterSpan.textContent = (Math.round(parseInt(co2CounterSpan.textContent) / 24));
                     });
 
                     // Update the index of the emitter card delete button
